@@ -18,10 +18,15 @@
 </form>
 
 <p id="result">This text will be replaced </p>
+<br>
+<div>
+    <img src="passionflower.jpg" id="useImage" height="100px" width="100px" onclick="selectImage()"/>
+</div>
 
 <script> 
 var goodCount = 0
 var oopsCount = 0
+var useImage = 1
 function checkPainter (){
     console.log("Getting form values")
     secretName = document.getElementById("form1_paint").value
@@ -36,6 +41,26 @@ function checkPainter (){
         oopsCount = oopsCount + 1
     }
     out.innerHTML = "good count: " +goodCount+" oops count: "+oopsCount
+}
+
+function selectImage(){
+    var image = document.getElementById("useImage")
+    switch(useImage) {
+        case 1:
+            image.src = "lilyofvalley.jpg"
+            useImage = useImage + 1
+        break;
+        case 2:
+            useImage = useImage + 1
+            image.src = "africanviolet.jpg"
+        break;
+        case 3:
+            useImage = 1
+            image.src = "passionflower.jpg"
+        default:
+            useImage = 1
+            
+    }
 }
 </script>
 
