@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>make conversions here!</title>
+ </head>
+<body>
+
+<h2>Shanmuk shows currency conversions</h2>
+
+<form>
+    <label for="form1_base">Enter base amount </label>
+    <input type ="number" id="form1_base" name="form1_base" value=50> <br>
+
+    <label for="form1_conv">Enter the conversion rate </label>
+    <input type ="number" id="form1_conv" name="form1_conv" value=35> <br>
+
+    <input type="button" onclick="convert()" value="Show conversions">
+</form>
+
+
+<p id="result">conversions will be shown here </p>
+
+<form>
+    <input type="radio" onclick="chooseOp()" id="rg1_mean" name="radioVal" value="mean">
+    <label for="rg1_mean">average</label></br>
+  
+    <input type="radio" onclick="chooseOp()" id="rg1_max" name="radioVal" value="maximum">
+    <label for="rg1_max">max</label></br>
+  
+    <input type="radio" onclick="chooseOp()" id="rg1_min" name="radioVal" value="minimum">
+    <label for="rg1_min">min</label></br>
+  </form>
+
+  <p id="result1">find mean, max or min</p>
+
+<script> 
+
+function convert(){
+    console.log("Getting form values")
+    var toShow = ''
+    var multiply = 1
+    base = document.getElementById("form1_base").value
+    conv = document.getElementById("form1_conv").value
+    for(var i=0;i<5;i++){
+        let res = multiply*base*conv;
+        res = Math.round(res*10)/10;
+        toShow += " "+base*multiply+" value is "+res+";"
+        multiply *= 2
+    }
+    out = document.getElementById("result")
+    out.innerHTML = "Conversions are :"+toShow.toString();
+}
+
+function chooseOp(){
+    base = document.getElementById("form1_base").value
+    conv = document.getElementById("form1_conv").value
+    var ele = document.getElementsByName('radioVal');
+    var radioVal;   
+        for(i = 0; i < ele.length; i++) {
+            if(ele[i].checked){
+               radioVal = ele[i].value 
+            }
+        }
+    var out2 = document.getElementById("result1")
+    var max, min, toShow = '';
+    max = Math.max(base, conv);
+    min = Math.min(base, conv);
+    if(radioVal === "mean"){
+        toShow = "mean of "+base+" and "+conv+" is : "+(parseFloat(base)+parseFloat(conv))/2
+    }else if(radioVal === "maximum"){
+        toShow = "maxmimum of "+base+" and "+conv+" is : "+max
+    }else if(radioVal === "minimum"){
+        toShow = "minimum of "+base+" and "+conv+" is : "+min;
+    }   
+    out2.innerHTML = toShow.toString() 
+}
+</script>
+
+</body>
+</html> 
