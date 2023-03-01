@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <title>Candies are bad!!</title>
+ </head>
+<body>
+
+<h2>Shanmuk chooses candy</h2>
+
+<form>
+    <input type="checkbox" id="cb1_chocolate" name="chocolate"   
+      value="True">
+    <label for="cb1_chocolate">Dark Chocolate</label></br>
+  
+    <input type="checkbox" id="cb1_nuts" name="nuts" 
+       value="True">
+    <label for="cb1_nuts">Nuts</label></br>
+  
+    <input type="checkbox" id="cb1_chewy" name="chewy"   
+       value="False">
+    <label for="cb1_chewy">Chewy</label></br>
+
+    <input type="button" onclick="selectBox()" value="Select a box ">
+</form>
+<br>
+<form>
+    <label for="form1_size">Enter the size </label>
+    <input type ="text" id="form1_size" name="form1_size" value="size"> <br>
+
+    <label for="form1_price">Enter price </label>
+    <input type ="text" id="form1_price" name="form1_price" value=""> <br>
+
+    <input type="button" onclick="updateBox()" value="Update the box ">
+</form>
+
+<p id="result">This text will be replaced </p>
+
+<script> 
+var my_candy_box = { }
+var out = document.getElementById("result")
+
+function selectBox (){
+    console.log("Getting form values")
+    dark = document.getElementById("cb1_chocolate").checked
+    nuts = document.getElementById("cb1_nuts").checked
+    chewy = document.getElementById("cb1_chewy").checked
+
+    if(dark){
+        my_candy_box["dark"] = "True"
+    }else{
+        my_candy_box["dark"] = "False"
+    }
+    if(nuts){
+        my_candy_box["nuts"] = "True"
+    }else{
+        my_candy_box["nuts"] = "False"
+    }
+    if(chewy){
+        my_candy_box["chewy"] = "True"
+    }else{
+        my_candy_box["chewy"] = "False"
+    }
+    out.innerHTML = JSON.stringify(my_candy_box);
+}
+
+function updateBox(){
+    size = document.getElementById("form1_size").value;
+    price = document.getElementById("form1_price").value;
+    my_candy_box["size"] = size;
+    my_candy_box["price"] = price
+    out.innerHTML = JSON.stringify(my_candy_box)
+}
+</script>
+
+</body>
+</html> 
